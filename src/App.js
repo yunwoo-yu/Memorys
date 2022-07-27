@@ -1,17 +1,20 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./pages/Header";
+import Layout from "./component/Layout/Layout";
+import Recipe from "./pages/Recipe";
+import Board from "./pages/Board";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <Header />
-      <main>
+      <Layout>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="recipe" element={<Recipe />} />
+          <Route path="board" element={<Board />} />
         </Routes>
-      </main>
+      </Layout>
     </>
   );
 }
