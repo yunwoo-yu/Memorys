@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
 
-const Navigation = () => {
+const Navigation = (props) => {
   return (
     <>
       <header className={styles.header}>
@@ -20,7 +20,9 @@ const Navigation = () => {
           </ul>
           <ul>
             <li>
-              <Link to="/">로그인</Link>
+              <button type="button" onClick={props.onLogin}>
+                로그인
+              </button>
             </li>
             <li>
               <Link to="/">로그아웃</Link>

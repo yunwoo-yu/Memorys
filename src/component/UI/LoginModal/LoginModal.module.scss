@@ -1,0 +1,63 @@
+@keyframes modal {
+  0% {
+    top: -50%;
+  }
+  50% {
+    top: 65%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+}
+.modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1200px;
+  z-index: 100;
+  overflow: hidden;
+  background-color: #fff;
+
+  animation: modal 0.6s ease-out forwards;
+
+  header {
+    width: 100%;
+    height: 3rem;
+    background-color: #0078ff;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    button {
+      margin-right: 15px;
+    }
+  }
+
+  form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10% 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    label {
+      width: 90%;
+    }
+
+    input {
+      width: 90%;
+      padding: 1% 0;
+    }
+  }
+}
