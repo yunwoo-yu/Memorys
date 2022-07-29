@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
+import { loginActions } from "../../store/login";
+import { useDispatch } from "react-redux/es/exports";
 
-const Navigation = (props) => {
+const Navigation = () => {
+  const dispatch = useDispatch();
+
+  const loginHandler = () => {
+    dispatch(loginActions.loginToggle());
+  };
+
+  console.log();
+
   return (
     <>
       <header className={styles.header}>
@@ -20,7 +30,7 @@ const Navigation = (props) => {
           </ul>
           <ul>
             <li>
-              <button type="button" onClick={props.onLogin}>
+              <button type="button" onClick={loginHandler}>
                 로그인
               </button>
             </li>
