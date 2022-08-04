@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./Auth";
-import loginModalSlice from "./modal";
+import userSlice from "../Reducer/Slice/userSlice";
 
 const store = configureStore({
   reducer: {
-    login: loginModalSlice.reducer,
-    auth: authSlice.reducer,
+    user: userSlice.reducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export default store;
