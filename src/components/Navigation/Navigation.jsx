@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { loginModalToggle } from "../../Reducer/Slice/userSlice";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
-  const loginHandler = () => {};
+  const dispatch = useDispatch();
+
+  const loginHandler = () => {
+    dispatch(loginModalToggle());
+  };
   const logoutHandler = () => {};
 
   return (
@@ -42,7 +48,6 @@ const Navigation = () => {
                 로그인
               </button>
             </li>
-
             <li>
               <button onClick={logoutHandler}>로그아웃</button>
             </li>

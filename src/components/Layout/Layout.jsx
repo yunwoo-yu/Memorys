@@ -1,11 +1,11 @@
 import styled from "./Layout.module.scss";
 import Navigation from "../Navigation/Navigation";
-// import LoginModal from "../LoginModal/LoginModal";
+import LoginModalContainer from "../../containers/LoginModalContainer/LoginModalContainer";
 
 const Layout = (props) => {
   return (
     <>
-      {/* <LoginModal /> */}
+      <LoginModalContainer />
       <Navigation />
       <main className={styled.wrap}>{props.children}</main>
     </>

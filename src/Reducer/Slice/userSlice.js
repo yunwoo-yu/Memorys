@@ -7,41 +7,53 @@ const userSignUpAction = createAction("user/userSignUp");
 const initialState = {
   email: "",
   password: "",
+  data: {},
   loggedStatus: false,
+  loginToggle: false,
   returnSecureToken: true,
   error: null,
   loading: false,
 };
 
-export const userSignUp = createAsyncThunk(userSignUpAction, async (data) => {
-  const response = await axios.post(
-    "ttps://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k",
-    data
-  );
-
-  return response.data;
-});
+export const userSignUpAndLogin = createAsyncThunk(
+  userSignUpAction,
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k",
+        data
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response);
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "signUp",
   initialState,
-  reducers: {},
+  reducers: {
+    loginModalToggle: (state) => ({
+      ...state,
+      loginToggle: !state.loginToggle,
+    }),
+  },
   extraReducers: {
-    [userSignUp.pending]: (state, action) => ({
+    [userSignUpAndLogin.pending]: (state, action) => ({
       ...state,
-      loading: true,
     }),
-    [userSignUp.fulfilled]: (state, action) => ({
+    [userSignUpAndLogin.fulfilled]: (state, action) => ({
       ...state,
-      loading: false,
-      email: action.payload,
-      password: action.payload,
+      data: action.payload,
     }),
-    [userSignUp.rejected]: (state, action) => ({
+    [userSignUpAndLogin.rejected]: (state, action) => ({
       ...state,
       error: action.payload,
     }),
   },
 });
+
+export const { loginModalToggle } = userSlice.actions;
 
 export default userSlice;

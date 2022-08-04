@@ -1,15 +1,14 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import SignUpForm from "../../components/SignUp/SignUpForm";
-import { userSignUp } from "../../Reducer/Slice/userSlice";
+import { userSignUpAndLogin } from "../../Reducer/Slice/userSlice";
 
 const SignUpFormContainer = () => {
   const dispatch = useDispatch();
 
   const signUp = useCallback(
     (data) => {
-      dispatch(userSignUp(data));
-      console.log(data);
+      dispatch(userSignUpAndLogin(data));
     },
     [dispatch]
   );

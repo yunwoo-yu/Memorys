@@ -3,12 +3,17 @@ import ReactDOM from "react-dom";
 import { useRef } from "react";
 
 import styled from "./LoginModal.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { loginModalToggle } from "../../Reducer/Slice/userSlice";
 
-const LoginForm = () => {
+const LoginModal = () => {
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const loginHandler = () => {};
+  const loginCloseHandler = () => {
+    dispatch(loginModalToggle());
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -16,11 +21,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className={styled.backdrop} onClick={loginHandler} />
+      <div className={styled.backdrop} onClick={loginCloseHandler} />
       <div className={styled.modal}>
         <header>
           <h2>로고</h2>
-          <button onClick={loginHandler}>X</button>
+          <button onClick={loginCloseHandler}>X</button>
         </header>
         <form onSubmit={submitHandler}>
           <label htmlFor="email">이메일</label>
@@ -30,17 +35,6 @@ const LoginForm = () => {
           <button type="submit">로그인</button>
         </form>
       </div>
-    </>
-  );
-};
-
-const LoginModal = (props) => {
-  return (
-    <>
-      {ReactDOM.createPortal(
-        <LoginForm onLogin={props.onLogin} />,
-        document.getElementById("modal-root")
-      )}
     </>
   );
 };

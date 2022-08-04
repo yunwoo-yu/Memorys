@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const SignUpForm = ({ signUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const loading = useSelector((state) => state.user.loading);
-
   const signUpData = {
     email: email,
     password: password,
@@ -15,7 +11,6 @@ const SignUpForm = ({ signUp }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     signUp(signUpData);
-    console.log(signUpData);
   };
 
   return (
