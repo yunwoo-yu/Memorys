@@ -2,12 +2,14 @@ import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { loginModalToggle } from "../../Reducer/Slice/userSlice";
 import styles from "./Navigation.module.scss";
+import React from "react";
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
   const loginHandler = () => {
     dispatch(loginModalToggle());
+    console.log(loginModalToggle);
   };
   const logoutHandler = () => {};
 
@@ -19,24 +21,24 @@ const Navigation = () => {
           <ul>
             <li>
               <NavLink
-                className={(navData) => (navData.isActive ? styles.active : "")}
                 to="/recipe"
+                className={(navData) => (navData.isActive ? styles.active : "")}
               >
                 레시피
               </NavLink>
             </li>
             <li>
               <NavLink
-                className={(navData) => (navData.isActive ? styles.active : "")}
                 to="/board"
+                className={(navData) => (navData.isActive ? styles.active : "")}
               >
                 레시피 게시판
               </NavLink>
             </li>
             <li>
               <NavLink
-                className={(navData) => (navData.isActive ? styles.active : "")}
                 to="/myrecipe"
+                className={(navData) => (navData.isActive ? styles.active : "")}
               >
                 나만의 레시피
               </NavLink>
@@ -54,8 +56,8 @@ const Navigation = () => {
 
             <li>
               <NavLink
-                className={(navData) => (navData.isActive ? styles.active : "")}
                 to="/signup"
+                className={(navData) => (navData.isActive ? styles.active : "")}
               >
                 회원가입
               </NavLink>

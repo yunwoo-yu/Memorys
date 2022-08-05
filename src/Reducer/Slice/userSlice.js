@@ -15,14 +15,19 @@ const initialState = {
   loading: false,
 };
 
-export const userSignUpAndLogin = createAsyncThunk(
+export const userSignUp = createAsyncThunk(
   userSignUpAction,
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k",
-        data
-      );
+      let url;
+      if (initialState.loginToggle) {
+        url =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k";
+      } else {
+        url =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k";
+      }
+      const response = await axios.post(url, data);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response);
@@ -31,7 +36,7 @@ export const userSignUpAndLogin = createAsyncThunk(
 );
 
 const userSlice = createSlice({
-  name: "signUp",
+  name: "user",
   initialState,
   reducers: {
     loginModalToggle: (state) => ({
@@ -40,14 +45,14 @@ const userSlice = createSlice({
     }),
   },
   extraReducers: {
-    [userSignUpAndLogin.pending]: (state, action) => ({
+    [userSignUp.pending]: (state, action) => ({
       ...state,
     }),
-    [userSignUpAndLogin.fulfilled]: (state, action) => ({
+    [userSignUp.fulfilled]: (state, action) => ({
       ...state,
       data: action.payload,
     }),
-    [userSignUpAndLogin.rejected]: (state, action) => ({
+    [userSignUp.rejected]: (state, action) => ({
       ...state,
       error: action.payload,
     }),

@@ -1,12 +1,16 @@
-* {
-  box-sizing: border-box;
+@import url(./font/font.css);
+
+html {
+  font-size: 10px;
 }
 
 html,
 body {
-  font-family: "Open Sans", "Lato", sans-serif;
+  font-family: "S-Core Dream 4", "Open Sans", "Lato", sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
 }
 ul {
   list-style: none;
@@ -14,7 +18,20 @@ ul {
   margin: 0;
 }
 button,
-h2 {
+h2,
+h1,
+form,
+div,
+input,
+button,
+span,
+p {
   padding: 0;
   margin: 0;
+}
+
+input,
+button {
+  font-family: "S-Core Dream 4", "Open Sans", "Lato", sans-serif;
+  font-size: 1rem;
 }
