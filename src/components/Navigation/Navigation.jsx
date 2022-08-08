@@ -1,17 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { loginModalToggle } from "../../Reducer/Slice/userSlice";
+import { loginModalToggle, logout } from "../../Reducer/Slice/userSlice";
 import styles from "./Navigation.module.scss";
 import React from "react";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const loginToken = useSelector((state) => state.users.token);
+  const isLogined = !!loginToken;
 
   const loginHandler = () => {
     dispatch(loginModalToggle());
-    console.log(loginModalToggle);
   };
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    dispatch(logout());
+    localStorage.clear();
+  };
+  console.log(isLogined);
 
   return (
     <>
@@ -35,33 +40,33 @@ const Navigation = () => {
                 레시피 게시판
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/myrecipe"
-                className={(navData) => (navData.isActive ? styles.active : "")}
-              >
-                나만의 레시피
-              </NavLink>
-            </li>
           </ul>
           <ul>
-            <li>
-              <button type="button" onClick={loginHandler}>
-                로그인
-              </button>
-            </li>
-            <li>
-              <button onClick={logoutHandler}>로그아웃</button>
-            </li>
+            {!isLogined && (
+              <li>
+                <button type="button" onClick={loginHandler}>
+                  로그인
+                </button>
+              </li>
+            )}
+            {isLogined && (
+              <li>
+                <button onClick={logoutHandler}>로그아웃</button>
+              </li>
+            )}
 
-            <li>
-              <NavLink
-                to="/signup"
-                className={(navData) => (navData.isActive ? styles.active : "")}
-              >
-                회원가입
-              </NavLink>
-            </li>
+            {!isLogined && (
+              <li>
+                <NavLink
+                  to="/signup"
+                  className={(navData) =>
+                    navData.isActive ? styles.active : ""
+                  }
+                >
+                  회원가입
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
       </header>

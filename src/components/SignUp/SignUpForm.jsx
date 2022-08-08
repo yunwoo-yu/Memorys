@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useForm from "../../hooks/useForm";
 import styled from "./SignUpForm.module.scss";
 
