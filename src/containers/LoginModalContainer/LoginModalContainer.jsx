@@ -26,12 +26,8 @@ const LoginModalContainer = () => {
     event.preventDefault();
     dispatch(userLogin(formData));
     dispatch(loginModalToggle());
-  };
-
-  useEffect(() => {
     localStorage.setItem("token", loginToken);
-    navigate("/");
-  }, [loginToken]);
+  };
 
   return (
     <>
