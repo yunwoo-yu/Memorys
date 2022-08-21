@@ -11,6 +11,8 @@ const RecipeList = ({ recipeData, loading, number, error }) => {
     }
   }, [inView, number]);
 
+  console.log(recipeData);
+
   return (
     <>
       <ul className={styled.list}>
@@ -18,11 +20,6 @@ const RecipeList = ({ recipeData, loading, number, error }) => {
           <li key={recipe.id}>
             <h2>{recipe.title}</h2>
             <img src={recipe.image} alt="foodImage" />
-            <ul>
-              {recipe.dishTypes.map((type, index) => (
-                <li key={index}>#{type}</li>
-              ))}
-            </ul>
           </li>
         ))}
         <div ref={ref} />

@@ -1,5 +1,3 @@
-import styled from "./RecipeCategory.module.scss";
-
 const RecipeCategory = () => {
   return (
     <div>

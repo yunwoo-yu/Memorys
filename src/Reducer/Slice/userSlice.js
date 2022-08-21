@@ -24,9 +24,7 @@ export const userSignUp = createAsyncThunk(
     try {
       let url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k";
-
       const response = await axios.post(url, data);
-
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response);
@@ -41,6 +39,7 @@ export const userLogin = createAsyncThunk(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAzWdv8N5eIaLBRsRyn72jCngr5AQPQs4k";
 
       const response = await axios.post(url, data);
+      localStorage.setItem("token", response.data.idToken);
       return response.data.idToken;
     } catch (err) {
       return rejectWithValue(err.response);

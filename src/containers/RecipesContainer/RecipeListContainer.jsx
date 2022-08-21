@@ -13,9 +13,9 @@ const RecipeListContainer = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://api.spoonacular.com/recipes/random?apiKey=077376e33b6d4e028d91ac53455e7d7e&number=${itemNumber}`
+        `https://api.spoonacular.com/recipes/complexSearch/?apiKey=077376e33b6d4e028d91ac53455e7d7e&number=${itemNumber}`
       );
-      setItem(res.data.recipes);
+      setItem(res.data.results);
       console.log(res);
       setLoading(false);
     } catch (err) {
@@ -28,6 +28,8 @@ const RecipeListContainer = () => {
   useEffect(() => {
     getRecipe();
   }, [getRecipe]);
+
+  console.log(item);
 
   return (
     <>
